@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Confirm Email";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<body style="background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            @if (ViewBag.UserDoesntExist != null)
+                            {
+                                <h3 class="text-danger">User doesn't exist!</h3>
+                                <h5 class="text-white">Go to the <a asp-controller="Home" asp-action="Index">Home</a> page</h5>
+                            }
+                            else
+
+                            {
+                                <h3 class="text-center text-white">Your email is confirmed!</h3>
+                                <h5 class="text-white">Let's go and <a asp-controller="Account" asp-action="SignIn">SignIn</a></h5>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

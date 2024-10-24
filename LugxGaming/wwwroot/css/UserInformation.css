@@ -1,0 +1,48 @@
+﻿body {
+    background: linear-gradient(to right, #2E3192, #1BFFFF)
+}
+
+.profile-card {
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.profile-card-header {
+    background: linear-gradient(to right, #D4145A, #FBB03B);
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.profile-card-body {
+    padding: 20px;
+}
+
+.info-section {
+    margin-bottom: 20px;
+}
+
+.info-section .title {
+    font-weight: bold;
+}
+
+.info-section .description {
+    margin-bottom: 10px;
+}
+
+.info-section .btn {
+    display: inline-flex;
+    align-items: center;
+}
+
+.info-section .btn svg {
+    margin-left: 5px;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #D4145A, #FBB03B);
+}

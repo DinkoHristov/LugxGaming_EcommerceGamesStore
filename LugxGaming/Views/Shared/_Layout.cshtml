@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LugxGaming</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/fontawesome.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/templatemo-lugx-gaming.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/owl.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/assets/css/animate.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" asp-append-version="true">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a asp-controller="Home" asp-action="Index" class="logo">
+                            <img src="assets/images/logo.png" alt="" style="width: 158px;">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a asp-controller="Home" asp-action="Index" class="active"><img src="~/assets/images/home-icon.png" style="width:fit-content; height:30px" /> Home</a></li>
+                            <li><a asp-controller="Shop" asp-action="Index"><img src="~/assets/images/shop-icon.png" style="width:fit-content; height:30px" /> Our Shop</a></li>
+                            <li><a asp-controller="Shop" asp-action="GameDetails"><img src="~/assets/images/game-details-icon.png" style="width:fit-content; height:30px" /> Product Details</a></li>
+                            <li><a asp-controller="ContactUs" asp-action="Index"><img src="~/assets/images/contact-us-icon.png" style="width:fit-content; height:30px" /> Contact Us</a></li>
+                            <li><vc:small-cart /></li>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li><img id="connectMetaMask" src="~/assets/images/metamask-icon.png" style="width:fit-content; height:40px; border-radius: 10%" /></li>
+                                <li><img id="logoutMetaMask" src="~/assets/images/logout-metamask-icon.png" style="width:80px; height:40px; border-radius: 10%" /></li>
+                                <form id="saveAccountForm" asp-controller="Payment" asp-action="SaveAccount" method="post">
+                                    @Html.AntiForgeryToken()
+                                </form>
+
+                                <form id="logoutAccountForm" method="post" asp-controller="Payment" asp-action="LogoutAccount">
+                                    @Html.AntiForgeryToken()
+                                </form>
+
+                                <li><a asp-controller="Account" asp-action="SignOut" class="text-dark">Sign Out, @User.Identity?.Name</a></li>
+
+                                if (User.IsInRole(Roles.Admin.ToString()))
+                                {
+                                    <li><a asp-controller="CreateGame" asp-action="Create" class="text-dark">Create Game</a></li>
+                                    <li><a asp-controller="Account" asp-action="Users" class="text-dark">Users</a></li>
+                                }
+                            }
+                            else
+                            {
+                                <li><a asp-controller="Account" asp-action="SignIn">Sign In</a></li>
+                            }
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/vendor/jquery/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/isotope.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/owl-carousel.js" asp-append-version="true"></script>
+    <script src="~/assets/js/counter.js" asp-append-version="true"></script>
+    <script src="~/assets/js/custom.js" asp-append-version="true"></script>
+    <script src="~/js/ethereumLogin.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

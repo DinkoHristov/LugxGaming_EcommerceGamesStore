@@ -1,0 +1,40 @@
+﻿@{
+	Layout = null;
+	ViewData["Title"] = "Payment Failed";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/assets/css/fontawesome.css" asp-append-version="true">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .failure-message {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .failure-icon {
+        font-size: 100px;
+        color: red;
+    }
+
+    .failure-text {
+        font-size: 24px;
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="failure-message">
+            <div class="failure-icon">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="failure-text">
+                <h1>Payment Failed</h1>
+                <p>We encountered an issue with your payment. Please try again later or contact support.</p>
+                <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Return to Home</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>

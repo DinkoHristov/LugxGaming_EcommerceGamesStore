@@ -1,0 +1,30 @@
+﻿using LugxGaming.Infrastructure;
+using LugxGaming.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LugxGaming.Components
+{
+	public class SmallCartViewComponent : ViewComponent
+	{
+		public IViewComponentResult Invoke()
+		{
+			var cart = HttpContext.Session.GetJson<List<CartItem>>("Cart");
+			SmallCartModel smallCart;
+
+			if (cart == null || cart.Count == 0)
+			{
+				smallCart = null;
+			}
+			else
+			{
+				smallCart = new SmallCartModel
+				{
+					NumberOfItems = cart.Sum(c => c.Quantity),
+					TotalAmount = cart.Sum(c => c.Quantity * c.USDPrice)
+				};
+			}
+
+			return View(smallCart);
+		}
+	}
+}

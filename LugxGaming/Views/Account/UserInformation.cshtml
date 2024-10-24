@@ -1,0 +1,38 @@
+﻿@model User
+
+@{
+    Layout = null;
+    ViewData["Title"] = "User Information";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/UserInformation.css" asp-append-version="true" />
+
+<body>
+
+    <form>
+        <div class="card profile-card">
+            <div class="card-header profile-card-header">
+                @Model.Email
+            </div>
+            <div class="card-body profile-card-body">
+                <div class="info-section">
+                    <div class="title">Email</div>
+                    <div class="description">@Model.Email</div>
+                    <button class="btn btn-primary" asp-controller="Account" asp-action="ResetEmail">
+                        Change Email
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L11 16l-4 1 1-4 10.5-10.5z"></path></svg>
+                    </button>
+                </div>
+                <div class="info-section">
+                    <div class="title">Password</div>
+                    <div class="description">***************</div>
+                    <button class="btn btn-primary" asp-controller="Account" asp-action="ResetPassword">
+                        Change Password
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

@@ -1,0 +1,34 @@
+﻿@model SmallCartModel
+
+@{
+    ViewData["Title"] = "Small Cart";
+}
+
+@if (Model != null)
+{
+    <div id="nav-cart" class="pre-acct-cart mr2-sm mr0-lg d-sm-ib">
+        <a asp-controller="Cart" asp-action="Index" title="Bag Items: @Model.NumberOfItems" aria-label="Bag Items: @Model.NumberOfItems" class="icon-btn ripple d-sm-b">
+            <div class="">
+                <svg aria-hidden="true" class="pre-nav-design-icon" focusable="false" viewBox="0 0 24 24" role="img" width="28px" height="28px" fill="none">
+                    <path stroke="currentColor" stroke-width="1.5" d="M8.25 8.25V6a2.25 2.25 0 012.25-2.25h3a2.25 2.25 0 110 4.5H3.75v8.25a3.75 3.75 0 003.75 3.75h9a3.75 3.75 0 003.75-3.75V8.25H17.5"></path>
+                    <text x="50%" y="58%" font-size="8" fill="white" text-anchor="middle" dy=".4em">@Model.NumberOfItems</text>
+                </svg>
+                <span class="pre-jewel pre-cart-jewel text-color-primary-dark" style="visibility: hidden;" data-var="jewel">@Model.NumberOfItems</span>
+            </div>
+        </a>
+    </div>
+}
+else
+{
+    <div id="nav-cart" class="pre-acct-cart mr2-sm mr0-lg d-sm-ib">
+        <a asp-controller="Cart" asp-action="Index" title="Bag Items: 0" aria-label="Bag Items: 0" class="icon-btn ripple d-sm-b">
+            <div class="">
+                <svg aria-hidden="true" class="pre-nav-design-icon" focusable="false" viewBox="0 0 24 24" role="img" width="28px" height="28px" fill="none">
+                    <path stroke="currentColor" stroke-width="1.5" d="M8.25 8.25V6a2.25 2.25 0 012.25-2.25h3a2.25 2.25 0 110 4.5H3.75v8.25a3.75 3.75 0 003.75 3.75h9a3.75 3.75 0 003.75-3.75V8.25H17.5"></path>
+                    <text x="50%" y="58%" font-size="8" fill="white" text-anchor="middle" dy=".4em"></text>
+                </svg>
+                <span class="pre-jewel pre-cart-jewel text-color-primary-dark" style="visibility: hidden;" data-var="jewel">0</span>
+            </div>
+        </a>
+    </div>
+}

@@ -1,0 +1,47 @@
+﻿@model ResetEmailFormModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Reset email";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<body style="background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))">
+    <form asp-controller="Account" asp-action="ResetEmail" method="post">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <h3 class="fw-bold mb-2 text-uppercase text-white">Enter a new email</h3>
+                                <h5 class="text-white-50 mb-5">Make sure it's a good one.</h5>
+
+                                @if (ViewBag.Reset != null && ViewBag.Reset == true)
+                                {
+                                    <div class="text-danger">
+                                        <p class="text-success">Email was reset successfully!</p>
+                                        <p>Go to <a asp-controller="Home" asp-action="Index">Home</a> page</p>
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    <label asp-for="Email">Email</label>
+                                    <input asp-for="Email" type="email" class="form-control" placeholder="New Email">
+                                    <span asp-validation-for="Email" class="text-warning"></span>
+                                    <br />
+                                </div>
+                                <input type="hidden" asp-for="Token" class="form-control" />
+
+                                <div class="form-group">
+                                    <input type="submit" value="Change" class="btn btn-outline-light btn-lg px-5" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

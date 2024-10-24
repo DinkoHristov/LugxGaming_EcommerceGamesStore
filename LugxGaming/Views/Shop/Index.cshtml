@@ -1,0 +1,103 @@
+﻿@model PaginatedList<ShopGameModel>
+
+@{
+    ViewData["Title"] = "Our Shop";
+    
+}
+
+<body>
+    <div class="page-heading header-text">
+        <div class="container">
+            <div class="row">
+				<div class="col-lg-12">
+                    <h3>Our Shop</h3>
+                    <span class="breadcrumb"><a asp-controller="Home" asp-action="Index">Home</a> > Our Shop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section trending">
+        <div class="container">
+            <ul class="trending-filter">
+                <li>
+                    <a asp-controller="Shop" asp-action="Index" class="active">Show All</a>
+                </li>
+                <li>
+                    <a asp-controller="Shop" asp-action="Index" asp-route-searchString="Action">Action</a>
+                </li>
+                <li>
+                    <a asp-controller="Shop" asp-action="Index" asp-route-searchString="Adventure">Adventure</a>
+                </li>
+                <li>
+                    <a asp-controller="Shop" asp-action="Index" asp-route-searchString="Strategy">Strategy</a>
+                </li>
+                <li>
+                    <a asp-controller="Shop" asp-action="Index" asp-route-searchString="Racing">Racing</a>
+                </li>
+                <li>
+                    <a asp-controller="Shop" asp-action="Index" asp-route-searchString="Sport">Sport</a>
+                </li>
+            </ul>
+            <div class="row trending-box">
+                @foreach (var game in Model)
+                {
+                    <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6">
+                        <div class="item">
+                            <div class="thumb" style="width: 336px; height: 189px">
+                                <a asp-controller="Shop" asp-action="GameDetails" asp-route-gameName="@game.GameName"><img src="@game.ImageUrl" style="max-width: 100%; max-height: 100%" alt=""></a>
+                                <span class="price">$@game.Price</span>
+                            </div>
+                            <div class="down-content">
+                                <span class="category">@game.GameGenre</span>
+                                <h4>@game.GameName</h4>
+                                <a asp-controller="Shop" asp-action="GameDetails" asp-route-gameName="@game.GameName" style="float: right;"><i class="fa fa-shopping-bag"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="pagination">
+                        <li>
+                            <a asp-controller="Shop" asp-action="Index"
+                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-searchString="@ViewData["SearchString"]"
+                               class="btn btn-default @(!Model.HasPreviousPage ? "disabled" : "")">
+                                &lt;
+                            </a>
+                        </li>
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li>
+                                <a asp-controller="Shop" asp-action="Index"
+                                   asp-route-pageNumber="@i"
+                                   asp-route-searchString="@ViewData["SearchString"]"
+                                   class="@(i == Model.PageIndex ? "is_active" : "")">
+                                    @i
+                                </a>
+                            </li>
+                        }
+                        <li>
+                            <a asp-controller="Shop" asp-action="Index"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-searchString="@ViewData["SearchString"]"
+                               class="btn btn-default @(!Model.HasNextPage ? "disabled" : "")">
+                                &gt;
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="col-lg-12">
+                <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; Design: Dinko Hristov</p>
+            </div>
+        </div>
+    </footer>
+</body>

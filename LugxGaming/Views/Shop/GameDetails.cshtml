@@ -1,0 +1,116 @@
+﻿@model GameDetailsModel
+
+@{
+    ViewData["Title"] = "Game Details";
+}
+
+<body>
+    <div class="page-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>@Model.GameName</h3>
+                    <span class="breadcrumb"><a asp-controller="Home" asp-action="Index">Home</a>  >  <a asp-controller="Shop" asp-action="Index">Shop</a>  >  Assasin Creed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-product section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="left-image">
+                        <img src="@Model.ImageUrl" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <h4>@Model.GameName</h4>
+                    <span class="price">$@Model.USDPrice or <img src="~/assets/images/eth-icon.png" style="width: 8%; height: 8%" />@Model.ETHPrice.ToString("F6") ETH</span>
+                    <form asp-controller="Cart" asp-action="Add">
+                        <input asp-for="Quantity" type="number" class="form-control" min="1"><br /><br />
+                        <button asp-controller="Cart" asp-action="Add" asp-route-quantity="@Model.Quantity" asp-route-gameName="@Model.GameName" type="submit"><i class="fa fa-shopping-bag"></i> ADD TO CART</button>
+                    </form>
+                    <ul>
+                        <li><span>Genre:</span> <a href="#">@Model.GameGenre</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <div class="sep"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="more-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tabs-content">
+                        <div class="row">
+                            <div class="nav-wrapper ">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                    <p>@Model.Description</p>
+                                </div>
+                                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                    <p>Coloring book air plant shabby chic, crucifix normcore raclette cred swag artisan activated charcoal. PBR&B fanny pack pok pok gentrify truffaut kitsch helvetica jean shorts edison bulb poutine next level humblebrag la croix adaptogen. <br><br>Hashtag poke literally locavore, beard marfa kogi bruh artisan succulents seitan tonx waistcoat chambray taxidermy. Same cred meggings 3 wolf moon lomo irony cray hell of bitters asymmetrical gluten-free art party raw denim chillwave tousled try-hard succulents street art.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section categories related-games">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h6>@Model.GameGenre</h6>
+                        <h2>Related Games</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="main-button">
+                        <a asp-controller="Shop" asp-action="Index">View All</a>
+                    </div>
+                </div>
+                <div class="row trending-box">
+                    @foreach (var relatedGame in Model.RelatedGames)
+                    {
+                        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6">
+                            <div class="item">
+                                <div class="thumb" style="width: 336px; height: 189px">
+                                    <a asp-controller="Shop" asp-action="GameDetails" asp-route-gameName="@relatedGame.GameName"><img src="@relatedGame.ImageUrl" style="max-width: 100%; max-height: 100%" alt=""></a>
+                                    <span class="price">$@relatedGame.Price</span>
+                                </div>
+                                <div class="down-content">
+                                    <span class="category">@relatedGame.GameGenre</span>
+                                    <h4 class="text-dark">@relatedGame.GameName</h4>
+                                    <a asp-controller="Shop" asp-action="GameDetails" asp-route-gameName="@relatedGame.GameName"><i class="fa fa-shopping-bag"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="col-lg-12">
+                <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; Design: Dinko Hristov</p>
+            </div>
+        </div>
+    </footer>
+</body>

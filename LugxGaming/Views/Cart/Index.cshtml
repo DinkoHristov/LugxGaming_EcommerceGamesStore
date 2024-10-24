@@ -1,0 +1,82 @@
+﻿@model CartViewModel
+
+@{
+	Layout = null;
+	ViewData["Title"] = "Cart Overview";
+}
+
+<head>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/assets/css/fontawesome.css" asp-append-version="true">
+	<script src="https://cdn.jsdelivr.net/npm/ethers@5/dist/ethers.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+</head>
+
+<body>
+	@if (Model.CartItems.Count > 0)
+	{
+		<table class="table">
+			<tr>
+				<th></th>
+				<th colspan="2">Game</th>
+				<th>Quantity</th>
+				<th colspan="3"></th>
+				<th colspan="2">Price USD</th>
+				<th colspan="3">Price ETH</th>
+				<th colspan="3">Total USD</th>
+				<th colspan="4">Total ETH</th>
+			</tr>
+
+			@foreach (var item in Model.CartItems)
+			{
+				<tr>
+					<td><img src="@item.Image" style="width: 100px; height: 100px" /></td>
+					<td colspan="2">@item.GameName</td>
+					<td>@item.Quantity</td>
+					<td colspan="3">
+						<a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="Add" asp-route-gameName="@item.GameName">+</a>
+						<a class="btn btn-primary btn-sm" asp-controller="Cart" asp-action="Decrease" asp-route-gameName="@item.GameName">-</a>
+						<a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Remove" asp-route-gameName="@item.GameName" style="margin-top:5px"><i class="fas fa-trash"></i></a>
+					</td>
+					<td colspan="2">@item.USDPrice.ToString("C2")</td>
+					<td colspan="3"><img src="~/assets/images/eth-icon.png" style="width: 5%; height: 5%" />@item.ETHPrice.ToString("F6")</td>
+					<td colspan="3">@Model.CartItems.Where(c => c.GameId == item.GameId).Sum(c => c.Quantity * c.USDPrice).ToString("C2")</td>
+					<td colspan="4"><img src="~/assets/images/eth-icon.png" style="width: 5%; height: 5%" />@Model.CartItems.Where(c => c.GameId == item.GameId).Sum(c => c.Quantity * c.ETHPrice).ToString("F6")</td>
+				</tr>
+			}
+		</table>
+
+		<div class="row">
+			<div class="col-12">
+				<a class="btn btn-danger" asp-controller="Cart" asp-action="Clear">Clear Cart</a>
+				<a class="btn btn-primary" asp-controller="Payment" asp-action="PayWithStripe" asp-route-amount="@Model.USDGrandTotal">Pay (@Model.USDGrandTotal.ToString("C2"))</a>
+				@if (ViewBag.EthereumAccount != null)
+				{
+					<a class="btn btn-primary" id="payWithEthereum" data-amount="@Model.ETHGrandTotal">Pay (@Model.ETHGrandTotal.ToString("F6") ETH)</a>
+				}
+				<a class="btn btn-primary" asp-controller="Shop" asp-action="Index">Continue Shopping</a>
+			</div>
+		</div>
+	}
+	else
+	{
+		<section class="py-6 py-lg-8 py-xxl-16">
+			<div class="container">
+				<div class="row">
+					<div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center">
+						<img src="~/assets/images/bag.svg" alt="bag" class="img-fluid mb-4" />
+						<h2>Your shopping cart is empty</h2>
+						<p class="mb-4">
+							Return to the store to add items for your delivery slot. Before proceed to checkout you must add some products to your shopping cart. You will find a lot of interesting products on our
+							shop page.
+						</p>
+						<a asp-controller="Shop" asp-action="Index" class="btn btn-primary">Explore Products</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	}
+
+	<script src="~/js/ethereumPayment.js" asp-append-version="true"></script>
+
+</body>

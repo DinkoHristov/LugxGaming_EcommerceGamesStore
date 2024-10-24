@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-LugxGaming-600de552-ebf2-45f1-961d-3dcbbced1e47</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\assets\images\bag.svg" />
+    <Content Remove="wwwroot\assets\images\contact-us-icon.png" />
+    <Content Remove="wwwroot\assets\images\create-game.jpg" />
+    <Content Remove="wwwroot\assets\images\eth-icon.png" />
+    <Content Remove="wwwroot\assets\images\game-details-icon.png" />
+    <Content Remove="wwwroot\assets\images\home-icon.png" />
+    <Content Remove="wwwroot\assets\images\logout-metamask-icon.png" />
+    <Content Remove="wwwroot\assets\images\metamask-icon.png" />
+    <Content Remove="wwwroot\assets\images\shop-icon.png" />
+    <Content Remove="wwwroot\assets\images\users_background.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Nethereum.Web3" Version="4.26.0" />
+    <PackageReference Include="Stripe.net" Version="46.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="wwwroot\assets\images\bag.svg" />
+    <Resource Include="wwwroot\assets\images\contact-us-icon.png" />
+    <Resource Include="wwwroot\assets\images\create-game.jpg" />
+    <Resource Include="wwwroot\assets\images\eth-icon.png" />
+    <Resource Include="wwwroot\assets\images\game-details-icon.png" />
+    <Resource Include="wwwroot\assets\images\home-icon.png" />
+    <Resource Include="wwwroot\assets\images\logout-metamask-icon.png" />
+    <Resource Include="wwwroot\assets\images\metamask-icon.png" />
+    <Resource Include="wwwroot\assets\images\shop-icon.png" />
+    <Resource Include="wwwroot\assets\images\users_background.jpg" />
+  </ItemGroup>
+
+</Project>
