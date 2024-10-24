@@ -11,11 +11,12 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-LugxGaming-600de552-ebf2-45f1-961d-3dcbbced1e47")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("LugxGaming")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e47575b99fa458964482b0d11500f7d5568ce8df")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f9c08d0606054ad3be40d289b4d7749f80cae7c")]
 [assembly: System.Reflection.AssemblyProductAttribute("LugxGaming")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LugxGaming")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
