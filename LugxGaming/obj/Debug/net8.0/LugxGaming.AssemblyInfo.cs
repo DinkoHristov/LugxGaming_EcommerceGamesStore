@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LugxGaming")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f9c08d0606054ad3be40d289b4d7749f80cae7c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cdca9bb881b355abbcaf56b7569ea103973931e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("LugxGaming")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LugxGaming")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

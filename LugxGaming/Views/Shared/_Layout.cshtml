@@ -58,17 +58,17 @@
                                     @Html.AntiForgeryToken()
                                 </form>
 
-                                <li><a asp-controller="Account" asp-action="SignOut" class="text-dark">Sign Out, @User.Identity?.Name</a></li>
-
                                 if (User.IsInRole(Roles.Admin.ToString()))
                                 {
-                                    <li><a asp-controller="CreateGame" asp-action="Create" class="text-dark">Create Game</a></li>
-                                    <li><a asp-controller="Account" asp-action="Users" class="text-dark">Users</a></li>
+                                    <li><a asp-controller="CreateGame" asp-action="Create" class="text-dark bg-info"><i class='fab fa-playstation'></i> Create Game</a></li>
+                                    <li><a asp-controller="Account" asp-action="Users" class="text-dark bg-info"><i class="fa-solid fa-users"></i>  Users</a></li>
                                 }
+
+                                <li><a asp-controller="Account" asp-action="SignOut" class="text-dark"><i class="fas fa-sign-out"></i> Sign Out, @User.Identity?.Name</a></li>
                             }
                             else
                             {
-                                <li><a asp-controller="Account" asp-action="SignIn">Sign In</a></li>
+                                <li><a asp-controller="Account" asp-action="SignIn"><i class="fa-solid fa-user"></i> Sign In</a></li>
                             }
                         </ul>
                         <a class='menu-trigger'>
