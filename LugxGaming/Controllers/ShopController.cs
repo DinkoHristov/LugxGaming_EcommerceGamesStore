@@ -1,7 +1,10 @@
 ﻿using LugxGaming.Data;
+using LugxGaming.Data.Models;
 using LugxGaming.Infrastructure;
 using LugxGaming.Models;
 using LugxGaming.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LugxGaming.Controllers
@@ -10,11 +13,13 @@ namespace LugxGaming.Controllers
     {
         private readonly ICurrencyService currencyService;
         private readonly IShopService shopService;
+        private readonly UserManager<User> userManager;
 
-        public ShopController(ICurrencyService currencyService, IShopService shopService)
+        public ShopController(ICurrencyService currencyService, IShopService shopService, UserManager<User> userManager)
         {
             this.currencyService = currencyService;
             this.shopService = shopService;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Index(int? pageNumber, string? searchString)
@@ -44,11 +49,28 @@ namespace LugxGaming.Controllers
             }
 
             selectedGame.RelatedGames = await this.shopService.FillRelatedGames(selectedGame.GameGenre, selectedGame.GameName);
+            selectedGame.Reviews = await this.shopService.GetAllReviewsAssociatedToGameAsync(selectedGame.GameName);
 
             var ethPriceInUsd = await this.currencyService.GetEthPriceInUsdAsync();
             selectedGame.ETHPrice = selectedGame.USDPrice / ethPriceInUsd;
 
 			return View(selectedGame);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> WriteReview(ReviewViewModel model)
+        {
+            var user = await this.userManager.GetUserAsync(User);
+
+            var result = await this.shopService.WriteReviewAsync(model, user);
+
+            if (!result.Success)
+            {
+                return RedirectToAction(nameof(ShopController.Index));
+            }    
+
+            return RedirectToAction(nameof(ShopController.GameDetails), "Shop", new { gameName = model.GameName });
         }
     }
 }

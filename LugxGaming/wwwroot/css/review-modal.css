@@ -1,0 +1,65 @@
+﻿.star-rating {
+    display: flex; /* Aligns stars in a row */
+    gap: 5px; /* Optional spacing between stars */
+}
+
+.star-rating .star {
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating .star.selected {
+    color: #FFD700; /* Gold color for selected stars */
+}
+
+details summary {
+    cursor: pointer;
+}
+
+.review-section .review {
+    margin-bottom: 15px;
+}
+
+.stars {
+    unicode-bidi: bidi-override;
+    color: #ccc;
+    display: inline-block;
+    position: relative;
+    padding: 0;
+}
+
+.stars .filled-stars {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #FFD700;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.review-comment {
+    font-size: 1em;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.stars {
+    position: relative;
+    display: inline-block;
+}
+
+.filled-stars {
+    color: #FFD700; /* Gold color */
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.empty-stars {
+    color: #ccc; /* Grey color */
+    white-space: nowrap;
+}

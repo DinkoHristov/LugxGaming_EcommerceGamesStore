@@ -1,17 +1,22 @@
 ﻿using LugxGaming.Data;
+using LugxGaming.Data.Models;
 using LugxGaming.Models;
 using LugxGaming.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace LugxGaming.Services
 {
 	public class ShopService : IShopService
 	{
 		private readonly ApplicationDbContext dbContext;
+		private readonly UserManager<User> userManager;
 
-        public ShopService(ApplicationDbContext dbContext)
+        public ShopService(ApplicationDbContext dbContext, UserManager<User> userManager)
         {
 			this.dbContext = dbContext;
+			this.userManager = userManager;
         }
 
         public async Task<List<ShopGameModel>> GetAllGames()
@@ -95,6 +100,54 @@ namespace LugxGaming.Services
             }
 
 			return topThreeNonRelatedGames;
+        }
+
+		public async Task<List<ReviewViewModel>?> GetAllReviewsAssociatedToGameAsync(string? gameName)
+		{
+			return await this.dbContext.Reviews
+				.Where(r => r.Game.Name == gameName)
+				.Select(r => new ReviewViewModel
+				{
+					UserName = r.User.UserName,
+					GameName = gameName,
+					Comment = r.Comment,
+					Rating = r.Rating,
+					CreatedOn = r.CreatedOn.ToString("dd MMM yyyy")
+				})
+				.ToListAsync();
+		}
+
+        public async Task<(bool Success, string ErrorMessage)> WriteReviewAsync(ReviewViewModel model, User? user)
+        {
+			try
+			{
+                var game = await this.dbContext.Games.FirstOrDefaultAsync(g => g.Name == model.GameName);
+
+                if (game is null)
+                {
+                    return (false, "Game not found");
+                }
+
+                var review = new Review()
+                {
+                    GameId = game.Id,
+                    Game = game,
+                    User = user,
+                    UserId = user.Id,
+                    Comment = model.Comment,
+                    CreatedOn = DateTime.Parse(model.CreatedOn),
+                    Rating = model.Rating
+                };
+
+                await this.dbContext.Reviews.AddAsync(review);
+                await this.dbContext.SaveChangesAsync();
+
+                return (true, string.Empty);
+            }
+			catch (Exception ex)
+			{
+				return (false, ex.Message);
+			}
         }
     }
 }

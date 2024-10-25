@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LugxGaming.Data.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace LugxGaming.Models
 {
@@ -26,5 +27,7 @@ namespace LugxGaming.Models
         public int Quantity { get; set; }
 
         public List<ShopGameModel> RelatedGames { get; set; }
+
+        public List<ReviewViewModel> Reviews { get; set; }
     }
 }

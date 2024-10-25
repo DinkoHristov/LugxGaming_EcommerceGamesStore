@@ -1,4 +1,5 @@
-﻿using LugxGaming.Models;
+﻿using LugxGaming.Data.Models;
+using LugxGaming.Models;
 
 namespace LugxGaming.Services.Interfaces
 {
@@ -37,5 +38,20 @@ namespace LugxGaming.Services.Interfaces
         /// <param name="gameName"></param>
         /// <returns></returns>
         Task<List<ShopGameModel>> FillRelatedGames(string gameGenre, string gameName);
+
+		/// <summary>
+		/// Get all reviews associated to the currently selected game
+		/// </summary>
+		/// <param name="gameName"></param>
+		/// <returns></returns>
+		Task<List<ReviewViewModel>?> GetAllReviewsAssociatedToGameAsync(string? gameName);
+
+        /// <summary>
+        /// This method writes review to the selected game
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        Task<(bool Success, string ErrorMessage)> WriteReviewAsync(ReviewViewModel model, User? user);
 	}
 }
