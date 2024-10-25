@@ -33,7 +33,7 @@ namespace LugxGaming.Data.Models
         public string ImageUrl { get; set; } = null!;
 
         [Required]
-        [Precision(18, 5)]
+        [Precision(18, 2)]
         [Comment("Game price")]
         public decimal Price { get; set; }
 
