@@ -18,6 +18,7 @@ namespace LugxGaming.Data
         public virtual DbSet<Genre> Genres { get; set; } = null!;
         public virtual DbSet<Game> Games { get; set; } = null!;
         public virtual DbSet<UsersGames> UsersGames { get; set; } = null!;
+        public virtual DbSet<Review> Reviews { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -28,6 +29,12 @@ namespace LugxGaming.Data
                 .HasOne(g => g.Game)
                 .WithMany(u => u.Users)
                 .HasForeignKey(g => g.GameId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Review>()
+                .HasOne(r => r.Game)
+                .WithMany(g => g.Reviews)
+                .HasForeignKey(r => r.GameId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             base.OnModelCreating(builder);

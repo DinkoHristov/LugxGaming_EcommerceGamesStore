@@ -18,6 +18,6 @@ namespace LugxGaming.Data.Models
         [Comment("Genre name")]
         public string Name { get; set; } = null!;
 
-        public ICollection<Game> Games { get; set; }
+        public virtual ICollection<Game> Games { get; set; }
     }
 }

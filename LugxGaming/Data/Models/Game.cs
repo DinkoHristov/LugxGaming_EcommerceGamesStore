@@ -9,6 +9,7 @@ namespace LugxGaming.Data.Models
         public Game()
         {
             Users = new HashSet<UsersGames>();
+            Reviews = new HashSet<Review>();
         }
 
         [Key]
@@ -40,6 +41,8 @@ namespace LugxGaming.Data.Models
         [Comment("Game description")]
         public string Description { get; set; } = null!;
 
-        public ICollection<UsersGames> Users { get; set; }
+        public virtual ICollection<UsersGames> Users { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

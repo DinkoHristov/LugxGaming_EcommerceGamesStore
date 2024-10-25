@@ -9,6 +9,7 @@ namespace LugxGaming.Data.Models
         public User()
         {
             Purchases = new HashSet<UsersGames>();
+            Reviews = new HashSet<Review>();
         }
 
         [Required]
@@ -19,6 +20,8 @@ namespace LugxGaming.Data.Models
         [Comment("User last name")]
         public string LastName { get; set; } = null!;
 
-        public ICollection<UsersGames> Purchases { get; set; }
+        public virtual ICollection<UsersGames> Purchases { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }
