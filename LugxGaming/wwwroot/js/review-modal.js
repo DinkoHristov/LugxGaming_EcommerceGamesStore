@@ -32,3 +32,11 @@ document.querySelectorAll('.star-rating .star').forEach(star => {
         document.getElementById('rating').value = this.getAttribute('data-value');
     });
 });
+
+function openAllReviewsModal() {
+    document.getElementById("allReviewsModal").style.display = "block";
+}
+
+function closeAllReviewsModal() {
+    document.getElementById("allReviewsModal").style.display = "none";
+}

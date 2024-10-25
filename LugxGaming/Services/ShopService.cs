@@ -2,21 +2,17 @@
 using LugxGaming.Data.Models;
 using LugxGaming.Models;
 using LugxGaming.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
 namespace LugxGaming.Services
 {
-	public class ShopService : IShopService
+    public class ShopService : IShopService
 	{
 		private readonly ApplicationDbContext dbContext;
-		private readonly UserManager<User> userManager;
 
-        public ShopService(ApplicationDbContext dbContext, UserManager<User> userManager)
+        public ShopService(ApplicationDbContext dbContext)
         {
 			this.dbContext = dbContext;
-			this.userManager = userManager;
         }
 
         public async Task<List<ShopGameModel>> GetAllGames()

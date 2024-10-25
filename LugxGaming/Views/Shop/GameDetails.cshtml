@@ -55,7 +55,7 @@
                                 </summary>
 
                                 <div class="review-section mt-3">
-                                    @foreach (var review in Model.Reviews)
+                                    @foreach (var review in Model.Reviews.Take(3))
                                     {
                                         <div class="review">
                                             <div class="d-flex align-items-center">
@@ -79,7 +79,8 @@
                                     }
                                 </div>
                                 <div class="review section mt-3">
-                                    <button class="cta-primary-dark btn-responsive shadow rounded underline text-dark" onclick="openReviewForm()">Write a review</button>
+                                    <button class="cta-primary-dark btn-responsive bg-info-subtle shadow rounded underline text-dark" onclick="openReviewForm()">Write a review</button>
+                                    <button class="cta-primary-dark btn-responsive bg-info-subtle shadow rounded underline text-dark" onclick="openAllReviewsModal()">More reviews</button>
                                 </div>
                             </details>
                         </li>
@@ -158,11 +159,11 @@
         </div>
     </footer>
 
-    <!-- Modal Form -->
+    <!-- Write Review Modal Form -->
     <div id="reviewModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeReviewForm()">&times;</span>
-            <h3>Write a Review</h3>
+            <span class="close" onclick="closeReviewForm()" style="font-size: 50px;">&times;</span>
+            <h3 class="text-center">Write a Review</h3>
             <form asp-controller="Shop" asp-action="WriteReview" method="post">
                 <div class="container py-5 h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -224,6 +225,18 @@
             </form>
         </div>
     </div>
+
+    <!-- Show All Reviews Modal -->
+    <div id="allReviewsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAllReviewsModal()" style="font-size: 50px;">&times;</span>
+            <h3 class="text-center">All Reviews</h3>
+            <div class="all-reviews-container">
+                @await Html.PartialAsync("../Shared/Components/AllReviews/_AllReviews.cshtml", Model.Reviews)
+            </div>
+        </div>
+    </div>
+
 </body>
 
 <script src="~/js/review-modal.js"></script>

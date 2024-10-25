@@ -63,3 +63,7 @@ details summary {
     color: #ccc; /* Grey color */
     white-space: nowrap;
 }
+
+.close {
+    cursor: pointer;
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ReviewViewModel>
+
+<div class="container review-section mt-3">
+    @foreach (var review in Model)
+    {
+        <div class="review shadow rounded">
+            <div class="align-items-center">
+                <strong>@review.UserName:</strong>
+                <div class="star-container ms-2" style="display: inline-block; position: relative; font-size: 1.2em;">
+                    <div class="filled-stars" title="@review.Rating Stars"
+                         style="width: @((review.Rating / 5.0) * 100)%; position: absolute; top: 0; left: 0; color: #FFD700; white-space: nowrap;">
+                        ★★★★★
+                    </div>
+                    <div class="empty-stars" title="@review.Rating Stars" style="color: #ccc; white-space: nowrap;">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+            <p class="review-comment">@review.Comment</p>
+        </div>
+        <hr>
+    }
+</div>
