@@ -1,0 +1,81 @@
+﻿@model PaginatedList<ReviewViewModel>
+
+@{
+    Layout = null;
+    ViewData["Title"] = "All Reviews";
+    var gameName = Model.Select(r => r.GameName).FirstOrDefault();
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/review-modal.css" asp-append-version="true" />
+
+<body>
+    <div class="container review-section mt-3">
+        @foreach (var review in Model)
+        {
+            <div class="review shadow rounded">
+                <div class="align-items-center">
+                    <strong>@review.UserName:</strong>
+                    <div class="star-container ms-2" style="display: inline-block; position: relative; font-size: 1.2em;">
+                        <div class="filled-stars" title="@review.Rating Stars"
+                             style="width: @((review.Rating / 5.0) * 100)%; position: absolute; top: 0; left: 0; color: #FFD700; white-space: nowrap;">
+                            ★★★★★
+                        </div>
+                        <div class="empty-stars" title="@review.Rating Stars" style="color: #ccc; white-space: nowrap;">
+                            ★★★★★
+                        </div>
+                    </div>
+                </div>
+                <p class="review-comment">@review.Comment</p>
+            </div>
+            <hr>
+        }
+        <!-- Pagination -->
+        <div class="row mt-4">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <nav aria-label="Review pagination">
+                    <ul class="pagination">
+                        <!-- Previous Button -->
+                        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                            <a asp-controller="Shop" asp-action="AllReviews"
+                               asp-route-pageNumber="@(Model.PageIndex - 1)"
+                               asp-route-gameName="@gameName"
+                               class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <!-- Page Number Links -->
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                                <a asp-controller="Shop" asp-action="AllReviews"
+                                   asp-route-pageNumber="@i"
+                                   asp-route-gameName="@gameName"
+                                   class="page-link">
+                                    @i
+                                </a>
+                            </li>
+                        }
+
+                        <!-- Next Button -->
+                        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                            <a asp-controller="Shop" asp-action="AllReviews"
+                               asp-route-pageNumber="@(Model.PageIndex + 1)"
+                               asp-route-gameName="@gameName"
+                               class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="text-">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Home page</a>
+        </div>
+    </div>
+</body>
+
+<script src="~/js/review-modal.js"></script>

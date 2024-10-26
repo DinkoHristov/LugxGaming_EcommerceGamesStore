@@ -2,7 +2,9 @@
 
 @{
     ViewData["Title"] = "Game Details";
+    ViewData["gameName"] = Model.GameName;
     var averageRating = Model.Reviews.Any() ? Model.Reviews.Average(r => r.Rating) : 0;
+    var allReviewsCount = ViewData["AllReviewsCount"];
 }
 
 <link rel="stylesheet" href="~/css/review-modal.css" asp-append-version="true" />
@@ -39,7 +41,7 @@
                         <li>
                             <details>
                                 <summary class="h5 text-dark" style="display: flex; align-items: center;">
-                                    Reviews (@Model.Reviews.Count)
+                                    Reviews (@allReviewsCount)
                                     <div class="star-container ms-2" style="display: inline-block; position: relative; font-size: 1.2em;">
                                         <!-- Filled stars based on the average rating -->
                                         <div class="filled-stars" title="@averageRating Stars"
@@ -233,6 +235,9 @@
             <h3 class="text-center">All Reviews</h3>
             <div class="all-reviews-container">
                 @await Html.PartialAsync("../Shared/Components/AllReviews/_AllReviews.cshtml", Model.Reviews)
+            </div>
+            <div class="model-content m-3 text-center">
+                <a asp-controller="Shop" asp-action="AllReviews" asp-route-gameName="@Model.GameName" class="btn btn-info cta-primary-dark btn-responsive bg-info-subtle shadow rounded underline text-dark">Show all reviews</a>
             </div>
         </div>
     </div>

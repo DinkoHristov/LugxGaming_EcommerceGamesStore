@@ -1,4 +1,4 @@
-﻿using LugxGaming.Data.Models;
+﻿using LugxGaming.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
 namespace LugxGaming.Models

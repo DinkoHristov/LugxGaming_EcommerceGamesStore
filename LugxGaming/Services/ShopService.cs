@@ -110,6 +110,7 @@ namespace LugxGaming.Services
 					Rating = r.Rating,
 					CreatedOn = r.CreatedOn.ToString("dd MMM yyyy")
 				})
+				.OrderByDescending(r => r.Rating)
 				.ToListAsync();
 		}
 
