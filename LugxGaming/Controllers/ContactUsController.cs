@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LugxGaming.Controllers
 {
-	public class ContactUsController : Controller
+    public class ContactUsController : Controller
     {
         private readonly IContactUsService contactUsService;
 

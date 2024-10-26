@@ -1,12 +1,10 @@
-﻿using LugxGaming.Data;
-using LugxGaming.Data.Models;
+﻿using LugxGaming.Data.Models;
 using LugxGaming.Infrastructure;
 using LugxGaming.Models;
 using LugxGaming.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace LugxGaming.Controllers
@@ -15,15 +13,13 @@ namespace LugxGaming.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signManager;
-        private readonly ApplicationDbContext dbContext;
         private readonly IAccountService accountService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signManager, 
-                                 ApplicationDbContext dbContext, IAccountService accountService)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signManager,
+            IAccountService accountService)
         {
             this.userManager = userManager;
             this.signManager = signManager;
-            this.dbContext = dbContext;
             this.accountService = accountService;
         }
 
@@ -109,7 +105,7 @@ namespace LugxGaming.Controllers
         public async Task<IActionResult> UserInformation()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-	        var user = await this.dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+	        var user = await this.userManager.GetUserAsync(User);
 
             var isUserSignedIn = this.signManager.IsSignedIn(User);
 

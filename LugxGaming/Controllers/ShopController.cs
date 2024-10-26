@@ -1,5 +1,4 @@
-﻿using LugxGaming.Data;
-using LugxGaming.Data.Models;
+﻿using LugxGaming.Data.Models;
 using LugxGaming.Infrastructure;
 using LugxGaming.Models;
 using LugxGaming.Services.Interfaces;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LugxGaming.Controllers
 {
-	public class ShopController : Controller
+    public class ShopController : Controller
     {
         private readonly ICurrencyService currencyService;
         private readonly IShopService shopService;

@@ -1,5 +1,4 @@
-﻿using LugxGaming.Data;
-using LugxGaming.Infrastructure;
+﻿using LugxGaming.Infrastructure;
 using LugxGaming.Models;
 using LugxGaming.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -15,14 +14,11 @@ namespace LugxGaming.Controllers
     public class PaymentController : Controller
     {
         private readonly StripeSettings stripe;
-        private readonly ApplicationDbContext dbContext;
         private readonly IPaymentService paymentService;
 
-        public PaymentController(IOptions<StripeSettings> stripeSettigns, ApplicationDbContext dbContext,
-                                 IPaymentService paymentService)
+        public PaymentController(IOptions<StripeSettings> stripeSettigns, IPaymentService paymentService)
         {
             this.stripe = stripeSettigns.Value;
-            this.dbContext = dbContext;
             this.paymentService = paymentService;
         }
 

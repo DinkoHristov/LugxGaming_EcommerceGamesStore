@@ -1,5 +1,4 @@
-﻿using LugxGaming.Data;
-using LugxGaming.Models;
+﻿using LugxGaming.Models;
 using LugxGaming.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,12 +7,10 @@ namespace LugxGaming.Controllers
 {
     public class CreateGameController : Controller
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly ICreateGameService createGameService;
 
-        public CreateGameController(ApplicationDbContext context, ICreateGameService createGameService)
+        public CreateGameController(ICreateGameService createGameService)
         {
-            this.dbContext = context;
             this.createGameService = createGameService;
         }
 
@@ -35,9 +32,8 @@ namespace LugxGaming.Controllers
                 return View(model);
             }
 
-            var (success, errorMessage) = await this.createGameService.CreateGame(model.GameName, model.GenreId, 
-                                                                        model.Price, model.ImageUrl,
-                                                                        model.Description);
+            var (success, errorMessage) = await this.createGameService.CreateGame(model.GameName, model.GenreId,
+                model.Price, model.ImageUrl, model.Description);
 
             if (!success)
             {
