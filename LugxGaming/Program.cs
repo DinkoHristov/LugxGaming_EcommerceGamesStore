@@ -60,13 +60,14 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    await DataSeed.AddAdmin(scope.ServiceProvider);
-
     var services = scope.ServiceProvider;
     var dbContext = services.GetRequiredService<ApplicationDbContext>();
-    DataSeed.AddGenres(dbContext);
 
-    dbContext.Database.Migrate();
+    await DataSeed.AddAdmin(scope.ServiceProvider);
+    await DataSeed.AddGenres(dbContext);
+    await DataSeed.AddGames(dbContext);
+
+    await dbContext.Database.MigrateAsync();
 }
 
 if (app.Environment.IsDevelopment())
