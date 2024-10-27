@@ -1,6 +1,7 @@
 ﻿using LugxGaming.Data.Enums;
 using LugxGaming.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace LugxGaming.Data
 {
@@ -34,11 +35,11 @@ namespace LugxGaming.Data
             }
         }
 
-        public static void AddGenres(ApplicationDbContext dbContext)
+        public static async Task AddGenres(ApplicationDbContext dbContext)
         {
-            if (!dbContext.Genres.Any())
+            if (!await dbContext.Genres.AnyAsync())
             {
-                dbContext.Genres.AddRange(new[]
+                await dbContext.Genres.AddRangeAsync(new[]
                 {
                     new Genre{ Name = "Action" },
                     new Genre{ Name = "Adventure" },
@@ -47,7 +48,7 @@ namespace LugxGaming.Data
                     new Genre{ Name = "Sport" }
                 });
 
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
         }
     }
