@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace LugxGaming.Tests
+namespace LugxGaming.Tests.TestsHelpers
 {
     // Helper class for Session handling in tests
     public class TestSession : ISession

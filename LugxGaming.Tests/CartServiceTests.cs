@@ -3,6 +3,7 @@ using LugxGaming.Data.Models;
 using LugxGaming.Models;
 using LugxGaming.Services;
 using LugxGaming.Services.Interfaces;
+using LugxGaming.Tests.TestsHelpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -15,7 +16,7 @@ namespace LugxGaming.Tests
         private Mock<IHttpContextAccessor> httpContextAccessorMock;
         private Mock<ICurrencyService> currencyServiceMock;
         private CartService cartService;
-        private TestSession session;
+        private TestsHelpers.TestSession session;
 
         [SetUp]
         public void Setup()
@@ -60,13 +61,13 @@ namespace LugxGaming.Tests
         public async Task Test_SetCartModelAsync_ShouldCalculateCartTotals()
         {
             // Arrange
-            session.SetString("MetaMaskAccount", "0x123");
+            TestsHelpers.SessionExtensions.SetString(session, "MetaMaskAccount", "0x123");
             var cartItems = new List<CartItem>
             {
                 new CartItem { GameName = "Game 1", USDPrice = 60m, Quantity = 2 },
                 new CartItem { GameName = "Game 2", USDPrice = 40m, Quantity = 1 }
             };
-            session.SetJson("Cart", cartItems);
+            TestsHelpers.SessionExtensions.SetJson(session, "Cart", cartItems);
 
             // Act
             var (cartViewModel, ethereumAccount) = await cartService.SetCartModelAsync();
@@ -90,7 +91,7 @@ namespace LugxGaming.Tests
 
             // Assert
             Assert.IsTrue(result);
-            var cart = session.GetJson<List<CartItem>>("Cart");
+            var cart = TestsHelpers.SessionExtensions.GetJson<List<CartItem>>(session, "Cart");
             Assert.AreEqual(1, cart.Count);
             Assert.AreEqual(gameName, cart[0].GameName);
             Assert.AreEqual(quantity, cart[0].Quantity);
@@ -106,7 +107,7 @@ namespace LugxGaming.Tests
             int additionalQuantity = 2;
 
             // Pre-populate the session cart with an item matching the test game
-            session.SetJson("Cart", new List<CartItem>
+            TestsHelpers.SessionExtensions.SetJson(session, "Cart", new List<CartItem>
             {
                 new CartItem { GameId = 1, GameName = gameName, Quantity = initialQuantity }
             });
@@ -116,7 +117,7 @@ namespace LugxGaming.Tests
 
             // Assert
             Assert.IsTrue(result);
-            var cart = session.GetJson<List<CartItem>>("Cart");
+            var cart = TestsHelpers.SessionExtensions.GetJson<List<CartItem>>(session, "Cart");
             Assert.AreEqual(1, cart.Count);
             Assert.AreEqual(initialQuantity + additionalQuantity, cart[0].Quantity); // Expected: 1 + 2 = 3
         }
@@ -129,7 +130,7 @@ namespace LugxGaming.Tests
             int initialQuantity = 2;
 
             // Pre-populate the session cart with an item
-            session.SetJson("Cart", new List<CartItem>
+            TestsHelpers.SessionExtensions.SetJson(session, "Cart", new List<CartItem>
             {
                 new CartItem { GameId = 1, GameName = gameName, Quantity = initialQuantity }
             });
@@ -139,7 +140,7 @@ namespace LugxGaming.Tests
 
             // Assert
             Assert.IsTrue(result);
-            var cart = session.GetJson<List<CartItem>>("Cart");
+            var cart = TestsHelpers.SessionExtensions.GetJson<List<CartItem>>(session, "Cart");
             Assert.AreEqual(1, cart.Count);
             Assert.AreEqual(initialQuantity - 1, cart[0].Quantity); // Expected: 2 - 1 = 1
         }
@@ -152,7 +153,7 @@ namespace LugxGaming.Tests
             int initialQuantity = 1;
 
             // Pre-populate the session cart with an item
-            session.SetJson("Cart", new List<CartItem>
+            TestsHelpers.SessionExtensions.SetJson(session, "Cart", new List<CartItem>
             {
                 new CartItem { GameId = 1, GameName = gameName, Quantity = initialQuantity }
             });
@@ -162,7 +163,7 @@ namespace LugxGaming.Tests
 
             // Assert
             Assert.IsTrue(result);
-            var cart = session.GetJson<List<CartItem>>("Cart");
+            var cart = TestsHelpers.SessionExtensions.GetJson<List<CartItem>>(session, "Cart");
             Assert.AreEqual(0, cart.Count); // Item should be removed
         }
 
@@ -173,7 +174,7 @@ namespace LugxGaming.Tests
             string gameName = "Test Game";
 
             // Pre-populate the session cart with an item
-            session.SetJson("Cart", new List<CartItem>
+            TestsHelpers.SessionExtensions.SetJson(session, "Cart", new List<CartItem>
             {
                 new CartItem { GameId = 1, GameName = gameName, Quantity = 1 }
             });
@@ -183,15 +184,15 @@ namespace LugxGaming.Tests
 
             // Assert
             Assert.IsTrue(result);
-            var cart = session.GetJson<List<CartItem>>("Cart");
+            var cart = TestsHelpers.SessionExtensions.GetJson<List<CartItem>>(session, "Cart");
             Assert.AreEqual(0, cart.Count); // Item should be removed
         }
 
         [Test]
-        public void RemoveCartItems_ShouldClearAllItemsInCart()
+        public void Test_RemoveCartItems_ShouldClearAllItemsInCart()
         {
             // Arrange
-            session.SetJson("Cart", new List<CartItem>
+            TestsHelpers.SessionExtensions.SetJson(session, "Cart", new List<CartItem>
             {
                 new CartItem { GameId = 1, GameName = "Test Game", Quantity = 2 },
                 new CartItem { GameId = 2, GameName = "Another Game", Quantity = 1 }
@@ -202,7 +203,7 @@ namespace LugxGaming.Tests
 
             // Assert
             Assert.IsTrue(result);
-            var cart = session.GetJson<List<CartItem>>("Cart");
+            var cart = TestsHelpers.SessionExtensions.GetJson<List<CartItem>>(session, "Cart");
             Assert.IsEmpty(cart); // The cart should be empty after removal
         }
     }
