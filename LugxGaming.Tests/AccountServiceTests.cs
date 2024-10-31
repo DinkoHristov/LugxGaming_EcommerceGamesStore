@@ -11,21 +11,14 @@ using Moq;
 
 namespace LugxGaming.Tests
 {
-    public class Tests
+    public class AccountServiceTests
     {
         private ApplicationDbContext dbContext;
-        private Mock<UserManager<User>> userManager;
-        private Mock<SignInManager<User>> signInManager;
 
         [SetUp]
         public void Setup()
         {
             this.dbContext = new ApplicationDbContext(new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("TEST").Options);
-
-            this.userManager = new Mock<UserManager<User>>(
-                Mock.Of<IUserStore<User>>());
-
-            this.signInManager = new Mock<SignInManager<User>>();
         }
 
         [TearDown]
