@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<AccountService, AccountService>();
 builder.Services.AddScoped<IContactUsService, ContactUsService>();
 builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IShopService, ShopService>();
