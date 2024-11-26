@@ -1,10 +1,9 @@
 ﻿using LugxGaming.BusinessLogic.Extensions;
 using LugxGaming.BusinessLogic.Models.Cart;
 using LugxGaming.BusinessLogic.Models.Payment;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LugxGaming.BusinessLogic.Components
+namespace LugxGaming.Components
 {
     public class SmallCartViewComponent : ViewComponent
     {
