@@ -1,8 +1,8 @@
-using LugxGaming.Data;
-using LugxGaming.Data.Models;
-using LugxGaming.Models;
-using LugxGaming.Services;
-using LugxGaming.Services.Interfaces;
+using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.Payment;
+using LugxGaming.BusinessLogic.Services;
+using LugxGaming.Data.Data;
+using LugxGaming.Data.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -12,14 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
 builder.Services.AddMemoryCache();
-builder.Services.AddScoped<ICurrencyService, CurrencyService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<IContactUsService, ContactUsService>();
-builder.Services.AddScoped<IHomeService, HomeService>();
-builder.Services.AddScoped<IShopService, ShopService>();
-builder.Services.AddScoped<ICartService, CartService>();
-builder.Services.AddScoped<ICreateGameService, CreateGameService>();
-builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ICurrencyInterface, CurrencyService>();
+builder.Services.AddScoped<IAccountInterface, AccountService>();
+builder.Services.AddScoped<IContactUsInterface, ContactUsService>();
+builder.Services.AddScoped<IHomeInterface, HomeService>();
+builder.Services.AddScoped<IShopInterface, ShopService>();
+builder.Services.AddScoped<ICartInterface, CartService>();
+builder.Services.AddScoped<ICreateGameInterface, CreateGameService>();
+builder.Services.AddScoped<IPaymentInterface, PaymentService>();
 builder.Services.AddSingleton<IUrlHelperFactory, UrlHelperFactory>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -63,9 +63,9 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var dbContext = services.GetRequiredService<ApplicationDbContext>();
 
-    await DataSeed.AddAdmin(scope.ServiceProvider);
-    await DataSeed.AddGenres(dbContext);
-    await DataSeed.AddGames(dbContext);
+    await LugxGaming.Data.DataSeed.AddAdmin(scope.ServiceProvider);
+    await LugxGaming.Data.DataSeed.AddGenres(dbContext);
+    await LugxGaming.Data.DataSeed.AddGames(dbContext);
 
     await dbContext.Database.MigrateAsync();
 }

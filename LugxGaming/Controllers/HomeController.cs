@@ -1,5 +1,5 @@
-﻿using LugxGaming.Models;
-using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,9 +7,9 @@ namespace LugxGaming.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHomeService homeService;
+        private readonly IHomeInterface homeService;
 
-        public HomeController(IHomeService homeService)
+        public HomeController(IHomeInterface homeService)
         {
             this.homeService = homeService;
         }

@@ -1,8 +1,8 @@
-﻿using LugxGaming.Data;
-using LugxGaming.Data.Models;
-using LugxGaming.Models;
-using LugxGaming.Services;
-using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.Payment;
+using LugxGaming.BusinessLogic.Services;
+using LugxGaming.Data.Data;
+using LugxGaming.Data.Data.Models;
 using LugxGaming.Tests.TestsHelpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +14,7 @@ namespace LugxGaming.Tests
     {
         private ApplicationDbContext dbContext;
         private Mock<IHttpContextAccessor> httpContextAccessorMock;
-        private Mock<ICurrencyService> currencyServiceMock;
+        private Mock<ICurrencyInterface> currencyServiceMock;
         private CartService cartService;
         private TestsHelpers.TestSession session;
 
@@ -35,7 +35,7 @@ namespace LugxGaming.Tests
             httpContextAccessorMock.Setup(_ => _.HttpContext).Returns(httpContext);
 
             // Mock ICurrencyService to return a fixed ETH price for testing
-            currencyServiceMock = new Mock<ICurrencyService>();
+            currencyServiceMock = new Mock<ICurrencyInterface>();
             currencyServiceMock.Setup(s => s.GetEthPriceInUsdAsync()).ReturnsAsync(4000m); // Sample ETH price
 
             // Initialize CartService

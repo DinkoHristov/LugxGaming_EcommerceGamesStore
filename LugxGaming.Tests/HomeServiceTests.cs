@@ -1,6 +1,6 @@
-﻿using LugxGaming.Data;
-using LugxGaming.Data.Models;
-using LugxGaming.Services;
+﻿using LugxGaming.BusinessLogic.Services;
+using LugxGaming.Data.Data;
+using LugxGaming.Data.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LugxGaming.Tests

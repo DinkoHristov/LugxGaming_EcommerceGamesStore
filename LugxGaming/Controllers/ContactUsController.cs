@@ -1,14 +1,14 @@
-﻿using LugxGaming.Models;
-using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.Contact;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LugxGaming.Controllers
 {
     public class ContactUsController : Controller
     {
-        private readonly IContactUsService contactUsService;
+        private readonly IContactUsInterface contactUsService;
 
-        public ContactUsController(IContactUsService contactUsService)
+        public ContactUsController(IContactUsInterface contactUsService)
         {
             this.contactUsService = contactUsService;
         }

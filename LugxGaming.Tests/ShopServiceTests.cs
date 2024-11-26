@@ -1,13 +1,8 @@
-﻿using LugxGaming.Data.Models;
-using LugxGaming.Data;
-using LugxGaming.Services;
+﻿using LugxGaming.BusinessLogic.Models.Shop;
+using LugxGaming.BusinessLogic.Services;
+using LugxGaming.Data.Data;
+using LugxGaming.Data.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LugxGaming.Models;
 
 namespace LugxGaming.Tests
 {

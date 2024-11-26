@@ -1,7 +1,7 @@
-﻿using LugxGaming.Data.Models;
-using LugxGaming.Infrastructure;
-using LugxGaming.Models;
-using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Extensions;
+using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.Account;
+using LugxGaming.Data.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +13,10 @@ namespace LugxGaming.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signManager;
-        private readonly IAccountService accountService;
+        private readonly IAccountInterface accountService;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signManager,
-            IAccountService accountService)
+            IAccountInterface accountService)
         {
             this.userManager = userManager;
             this.signManager = signManager;

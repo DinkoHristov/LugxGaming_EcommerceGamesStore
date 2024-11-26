@@ -1,5 +1,5 @@
-﻿using LugxGaming.Models;
-using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.CreateGame;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,9 +7,9 @@ namespace LugxGaming.Controllers
 {
     public class CreateGameController : Controller
     {
-        private readonly ICreateGameService createGameService;
+        private readonly ICreateGameInterface createGameService;
 
-        public CreateGameController(ICreateGameService createGameService)
+        public CreateGameController(ICreateGameInterface createGameService)
         {
             this.createGameService = createGameService;
         }

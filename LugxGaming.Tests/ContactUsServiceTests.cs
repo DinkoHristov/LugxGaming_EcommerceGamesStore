@@ -1,5 +1,5 @@
-﻿using LugxGaming.Models;
-using LugxGaming.Services;
+﻿using LugxGaming.BusinessLogic.Models.Contact;
+using LugxGaming.BusinessLogic.Services;
 
 namespace LugxGaming.Tests
 {

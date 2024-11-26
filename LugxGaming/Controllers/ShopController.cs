@@ -1,7 +1,7 @@
-﻿using LugxGaming.Data.Models;
-using LugxGaming.Infrastructure;
-using LugxGaming.Models;
-using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Extensions;
+using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.Shop;
+using LugxGaming.Data.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +10,11 @@ namespace LugxGaming.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly ICurrencyService currencyService;
-        private readonly IShopService shopService;
+        private readonly ICurrencyInterface currencyService;
+        private readonly IShopInterface shopService;
         private readonly UserManager<User> userManager;
 
-        public ShopController(ICurrencyService currencyService, IShopService shopService, UserManager<User> userManager)
+        public ShopController(ICurrencyInterface currencyService, IShopInterface shopService, UserManager<User> userManager)
         {
             this.currencyService = currencyService;
             this.shopService = shopService;

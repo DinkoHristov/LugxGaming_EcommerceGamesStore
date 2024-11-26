@@ -1,4 +1,5 @@
-﻿using LugxGaming.Services;
+﻿using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Services;
 using LugxGaming.Tests.TestsHelpers;
 using Microsoft.Extensions.Caching.Memory;
 using Moq;

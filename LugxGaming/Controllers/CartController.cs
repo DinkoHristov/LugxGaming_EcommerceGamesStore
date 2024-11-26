@@ -1,4 +1,4 @@
-﻿using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +6,10 @@ namespace LugxGaming.Controllers
 {
     public class CartController : Controller
     {
-        private readonly ICurrencyService currencyService;
-        private readonly ICartService cartService;
+        private readonly ICurrencyInterface currencyService;
+        private readonly ICartInterface cartService;
 
-        public CartController(ICurrencyService currencyService, ICartService cartService)
+        public CartController(ICurrencyInterface currencyService, ICartInterface cartService)
         {
             this.currencyService = currencyService;
             this.cartService = cartService;     

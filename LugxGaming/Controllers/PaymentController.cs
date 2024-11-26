@@ -1,6 +1,6 @@
-﻿using LugxGaming.Infrastructure;
-using LugxGaming.Models;
-using LugxGaming.Services.Interfaces;
+﻿using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Extensions;
+using LugxGaming.BusinessLogic.Models.Payment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +14,9 @@ namespace LugxGaming.Controllers
     public class PaymentController : Controller
     {
         private readonly StripeSettings stripe;
-        private readonly IPaymentService paymentService;
+        private readonly IPaymentInterface paymentService;
 
-        public PaymentController(IOptions<StripeSettings> stripeSettigns, IPaymentService paymentService)
+        public PaymentController(IOptions<StripeSettings> stripeSettigns, IPaymentInterface paymentService)
         {
             this.stripe = stripeSettigns.Value;
             this.paymentService = paymentService;

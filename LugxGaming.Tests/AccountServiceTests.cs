@@ -1,7 +1,7 @@
-using LugxGaming.Data;
-using LugxGaming.Data.Enums;
-using LugxGaming.Data.Models;
-using LugxGaming.Services;
+using LugxGaming.Data.Data;
+using LugxGaming.Data.Data.Enums;
+using LugxGaming.Data.Data.Models;
+using LugxGaming.BusinessLogic.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Routing;
