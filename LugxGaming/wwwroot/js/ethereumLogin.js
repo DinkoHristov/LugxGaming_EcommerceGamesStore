@@ -2,11 +2,11 @@
     const connectButton = document.getElementById('connectMetaMask');
     const logoutButton = document.getElementById('logoutMetaMask');
 
-    connectButton.addEventListener('click', async () => {
+    connectButton?.addEventListener('click', async () => {
         await connectMetaMask();
     });
 
-    logoutButton.addEventListener('click', async () => {
+    logoutButton?.addEventListener('click', async () => {
         await logoutMetaMask();
     });
 

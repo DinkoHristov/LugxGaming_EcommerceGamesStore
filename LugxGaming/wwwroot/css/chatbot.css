@@ -1,0 +1,106 @@
+﻿/* Floating Chatbot Widget */
+.chatbot-widget {
+    position: fixed;
+    bottom: 80px; /* Higher up from the bottom */
+    right: 64px; /* More to the left from the right edge */
+    z-index: 9999;
+}
+
+/* Chat Toggle Button */
+.chatbot-toggle {
+    background: #0078ff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    .chatbot-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .chatbot-toggle img {
+        width: 32px;
+        height: 32px;
+    }
+
+/* Chat Window */
+.chatbot-window {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 320px;
+    height: 420px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+    /* Hidden by default */
+    .chatbot-window.hidden {
+        display: none;
+    }
+
+/* Header */
+.chatbot-header {
+    background: #0078ff;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Chat Body */
+.chatbot-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    font-size: 14px;
+}
+
+/* Footer */
+.chatbot-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+    .chatbot-footer input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .chatbot-footer button {
+        margin-left: 8px;
+        padding: 8px 12px;
+        background: #0078ff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+    }
+
+/* Messages */
+.chatbot-body .user {
+    text-align: right;
+    margin: 6px 0;
+    color: #333;
+}
+
+.chatbot-body .bot {
+    text-align: left;
+    margin: 6px 0;
+    color: #0078ff;
+}

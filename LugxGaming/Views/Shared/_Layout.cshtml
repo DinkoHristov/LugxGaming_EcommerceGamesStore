@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/assets/css/animate.css" asp-append-version="true">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" asp-append-version="true">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/chatbot.css" asp-append-version="true">
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 <body>
@@ -86,6 +87,11 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+
+        <div class="chatbot-widget">
+            @await Html.PartialAsync("../Shared/Components/ChatBot/_AIChatBot.cshtml")
+        </div>
+
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -98,6 +104,8 @@
     <script src="~/assets/js/counter.js" asp-append-version="true"></script>
     <script src="~/assets/js/custom.js" asp-append-version="true"></script>
     <script src="~/js/ethereumLogin.js" asp-append-version="true"></script>
+    <script src="~/js//chatbot.js" asp-append-version="true"></script>
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
