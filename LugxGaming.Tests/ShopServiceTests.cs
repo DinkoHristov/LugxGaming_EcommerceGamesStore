@@ -45,9 +45,9 @@ namespace LugxGaming.Tests
 
             var games = new List<Game>
             {
-                new Game { Id = 1, Name = "Game1", Genre = genre1, Price = 29.99m, ImageUrl = "url1", Description = "Description1" },
-                new Game { Id = 2, Name = "Game2", Genre = genre2, Price = 39.99m, ImageUrl = "url2", Description = "Description2" },
-                new Game { Id = 3, Name = "Game3", Genre = genre1, Price = 19.99m, ImageUrl = "url3", Description = "Description3" }
+                new Game { Id = 1, Name = "Game1", Genre = genre1, Price = 29.99m, ImageUrl = "url1", VideoUrl = "Video/Url1", Description = "Description1" },
+                new Game { Id = 2, Name = "Game2", Genre = genre2, Price = 39.99m, ImageUrl = "url2", VideoUrl = "Video/Url2", Description = "Description2" },
+                new Game { Id = 3, Name = "Game3", Genre = genre1, Price = 19.99m, ImageUrl = "url3", VideoUrl = "Video/Url3", Description = "Description3" }
             };
 
             var user = new User { Id = "user1", UserName = "testuser", FirstName = "testFirstName", LastName = "testLastName" };

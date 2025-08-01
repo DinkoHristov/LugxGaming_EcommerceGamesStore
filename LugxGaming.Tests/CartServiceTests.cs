@@ -42,7 +42,7 @@ namespace LugxGaming.Tests
             cartService = new CartService(dbContext, httpContextAccessorMock.Object, currencyServiceMock.Object);
 
             // Seed the database with a test game
-            dbContext.Games.Add(new Game { Id = 1, Name = "Test Game", Price = 10, Description = "Test Description", ImageUrl = "Image/Url" });
+            dbContext.Games.Add(new Game { Id = 1, Name = "Test Game", Price = 10, Description = "Test Description", ImageUrl = "Image/Url", VideoUrl = "Video/Url" });
             dbContext.SaveChanges();
         }
 
