@@ -33,7 +33,7 @@ namespace LugxGaming.Controllers
             }
 
             var (success, errorMessage) = await this.createGameService.CreateGame(model.GameName, model.GenreId,
-                model.Price, model.ImageUrl, model.Description);
+                model.Price, model.ImageUrl, model.VideoUrl, model.Description);
 
             if (!success)
             {
@@ -43,6 +43,13 @@ namespace LugxGaming.Controllers
             }
 
             ViewBag.Created = true;
+
+            model.GenreId = 0;
+            model.GameName = "";
+            model.VideoUrl = "";
+            model.ImageUrl = "";
+            model.Price = 0;
+            model.Description = "";
 
             ModelState.Clear();
 

@@ -33,6 +33,11 @@ namespace LugxGaming.Data.Data.Models
         public string ImageUrl { get; set; } = null!;
 
         [Required]
+        [Url]
+        [Comment("Game video trailer url")]
+        public string VideoUrl { get; set; } = null!;
+
+        [Required]
         [Precision(18, 2)]
         [Comment("Game price")]
         public decimal Price { get; set; }

@@ -65,6 +65,7 @@ namespace LugxGaming.Tests
                 Genre = await _dbContext.Genres.FirstAsync(g => g.Id == 1),
                 Price = 59.99m,
                 ImageUrl = "http://example.com/image.jpg",
+                VideoUrl = "https://youtu.be/S7MnkE_qxj8",
                 Description = "A popular existing game."
             };
 
@@ -72,7 +73,7 @@ namespace LugxGaming.Tests
             await _dbContext.SaveChangesAsync();
 
             // Act
-            var result = await _createGameService.CreateGame("Existing Game", 1, 59.99m, "http://example.com/image.jpg", "A popular existing game.");
+            var result = await _createGameService.CreateGame("Existing Game", 1, 59.99m, "http://example.com/image.jpg", "https://youtu.be/S7MnkE_qxj8", "A popular existing game.");
 
             // Assert
             Assert.IsFalse(result.Success);
@@ -83,7 +84,7 @@ namespace LugxGaming.Tests
         public async Task Test_CreateGame_NewGame_ReturnsTrue()
         {
             // Act
-            var result = await _createGameService.CreateGame("New Game", 1, 49.99m, "http://example.com/newgame.jpg", "An exciting new game.");
+            var result = await _createGameService.CreateGame("New Game", 1, 49.99m, "http://example.com/newgame.jpg", "https://youtu.be/S7MnkE_qxj8", "An exciting new game.");
 
             // Assert
             Assert.IsTrue(result.Success);
@@ -95,6 +96,7 @@ namespace LugxGaming.Tests
             Assert.AreEqual(1, game.Genre.Id);
             Assert.AreEqual(49.99m, game.Price);
             Assert.AreEqual("http://example.com/newgame.jpg", game.ImageUrl);
+            Assert.AreEqual("https://youtu.be/S7MnkE_qxj8", game.VideoUrl);
             Assert.AreEqual("An exciting new game.", game.Description);
         }
     }

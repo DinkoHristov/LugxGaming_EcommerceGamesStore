@@ -25,7 +25,7 @@ namespace LugxGaming.BusinessLogic.Services
                 }).ToListAsync();
 
         public async Task<(bool Success, string ErrorMessage)> CreateGame(string gameName, int genreId,
-            decimal price, string imageUrl, string description)
+            decimal price, string imageUrl, string videoUrl, string description)
         {
             var game = await this.dbContext.Games.FirstOrDefaultAsync(g => g.Name == gameName);
 
@@ -40,6 +40,7 @@ namespace LugxGaming.BusinessLogic.Services
                 Genre = await this.dbContext.Genres.FirstOrDefaultAsync(g => g.Id == genreId),
                 Price = price,
                 ImageUrl = imageUrl,
+                VideoUrl = videoUrl,
                 Description = description.TrimEnd()
             };
 

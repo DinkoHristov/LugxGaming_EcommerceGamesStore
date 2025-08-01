@@ -17,9 +17,10 @@ namespace LugxGaming.BusinessLogic.Interfaces
         /// <param name="genreId"></param>
         /// <param name="price"></param>
         /// <param name="imageUrl"></param>
+        /// <param name="videoUrl"></param>
         /// <param name="description"></param>
         /// <returns></returns>
         Task<(bool Success, string ErrorMessage)> CreateGame(string gameName, int genreId, decimal price,
-                                                             string imageUrl, string description);
+            string imageUrl, string videoUrl, string description);
     }
 }

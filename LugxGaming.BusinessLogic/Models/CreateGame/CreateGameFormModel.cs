@@ -14,6 +14,10 @@ namespace LugxGaming.BusinessLogic.Models.CreateGame
         public string ImageUrl { get; set; }
 
         [Required]
+        [Url]
+        public string VideoUrl { get; set; }
+
+        [Required]
         public decimal Price { get; set; }
 
         [Required]

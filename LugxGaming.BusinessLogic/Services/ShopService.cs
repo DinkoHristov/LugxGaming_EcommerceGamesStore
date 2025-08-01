@@ -58,6 +58,7 @@ namespace LugxGaming.BusinessLogic.Services
                     GameGenre = g.Genre.Name,
                     USDPrice = g.Price,
                     ImageUrl = g.ImageUrl,
+                    VideoUrl = g.VideoUrl,
                     Description = g.Description
                 })
                 .FirstOrDefaultAsync();
@@ -71,6 +72,7 @@ namespace LugxGaming.BusinessLogic.Services
                 GameGenre = g.Genre.Name,
                 USDPrice = g.Price,
                 ImageUrl = g.ImageUrl,
+                VideoUrl = g.VideoUrl,
                 Description = g.Description
             })
             .FirstOrDefaultAsync();

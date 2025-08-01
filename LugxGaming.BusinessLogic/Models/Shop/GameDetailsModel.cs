@@ -14,6 +14,9 @@ namespace LugxGaming.BusinessLogic.Models.Shop
         public string ImageUrl { get; set; }
 
         [Required]
+        public string VideoUrl { get; set; }
+
+        [Required]
         public decimal USDPrice { get; set; }
 
 
