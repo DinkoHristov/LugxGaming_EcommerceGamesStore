@@ -55,5 +55,39 @@ namespace LugxGaming.Controllers
 
             return View(model);
         }
+
+        public async Task<IActionResult> AddPromotion()
+        {
+            var game = new AddPromotionFormModel() { Games = await this.createGameService.GetAllGames() };
+
+            return View(game);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> AddPromotion(AddPromotionFormModel model)
+        {
+            model.Games = await this.createGameService.GetAllGames();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result = await this.createGameService.UpdatePromoPrice(model.GameId, model.DiscountAmount);
+
+            if (result.Success)
+            {
+                ViewBag.Created = true;
+                ViewBag.GameName = result.GameName;
+
+                model.GameId = 0;
+                model.DiscountAmount = 0;
+
+                ModelState.Clear();
+            }
+
+            return View(model);
+        }
     }
 }

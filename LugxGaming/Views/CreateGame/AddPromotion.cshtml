@@ -1,0 +1,83 @@
+﻿@model AddPromotionFormModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Add Promotion";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<body style="background-image:url('/assets/images/create-game.jpg'); background-size:cover">
+    <form asp-controller="CreateGame" asp-action="AddPromotion" method="post">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <h2 class="fw-bold mb-2 text-uppercase text-white">Add Promotion</h2>
+
+                                @if (ViewBag.Created != null)
+                                {
+                                    <div class="alert alert-success" role="alert">
+                                        Promotion was added successfully to: <b>@ViewBag.GameName</b>!
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    <img id="img-url" style="max-width: 100%; max-height: 100%">
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="game-id" type="hidden" asp-for="GameId" class="form-control" placeholder="Game Id">
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="GameId"></label>
+                                    <select id="select-games" asp-for="GameId" class="form-control">
+                                        @foreach (var game in Model.Games)
+                                        {
+                                            <option value="@game.Id" data-img="@game.Image">@game.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="DiscountAmount"></label>
+                                    <input asp-for="DiscountAmount" type="number" min="1" class="form-control" placeholder="Game Discount" step=".01">
+                                    <span asp-validation-for="DiscountAmount" class="text-warning"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <br />
+                                    <input id="add-discount-btn" type="submit" value="Add Discount" class="btn btn-primary btn-lg px-5" />
+                                    <br />
+                                    <p class="text-center text-white">Go to the <a asp-controller="Home" asp-action="Index">Home</a> page!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    const select = document.getElementById('select-games');
+
+    window.onload = loadGameImage();
+    select?.addEventListener('change', loadGameImage);
+
+    function loadGameImage(e) {
+        if (e != undefined)
+            e.preventDefault();
+
+        const img = select.selectedOptions[0].dataset.img;
+        const gameId = select.selectedOptions[0].value;
+
+        document.getElementById('img-url').src = img;
+        document.getElementById('game-id').value = gameId;
+    }
+</script>

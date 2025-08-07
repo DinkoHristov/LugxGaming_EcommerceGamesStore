@@ -46,6 +46,13 @@ namespace LugxGaming.Data.Data.Models
         [Comment("Game description")]
         public string Description { get; set; } = null!;
 
+        [Comment("Game discount percentage")]
+        public decimal Discount { get; set; }
+
+        [Precision(18, 2)]
+        [Comment("Game promotion price")]
+        public decimal PromoPrice { get; set; }
+
         public virtual ICollection<UsersGames> Users { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }

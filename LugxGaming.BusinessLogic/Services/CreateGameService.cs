@@ -24,6 +24,34 @@ namespace LugxGaming.BusinessLogic.Services
                     Name = g.Name
                 }).ToListAsync();
 
+        public async Task<List<GameFormModel>> GetAllGames()
+            => await this.dbContext.Games
+                .AsNoTracking()
+                .Select(g => new GameFormModel
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Image = g.ImageUrl
+                })
+                .ToListAsync();
+
+        public async Task<Game> GetGameById(int id)
+            => await this.dbContext.Games.FirstOrDefaultAsync(g => g.Id == id);
+
+        public async Task<(bool Success, string GameName, string ErrorMessage)> UpdatePromoPrice(int id, decimal discount)
+        {
+            var selectedGame = await GetGameById(id);
+            if (selectedGame == null)
+                return (false, string.Empty, "Game is not found");
+
+            selectedGame.Discount = discount / 100.0m;
+            selectedGame.PromoPrice = selectedGame.Price * (1 - selectedGame.Discount);
+
+            await this.dbContext.SaveChangesAsync();
+
+            return (true, selectedGame.Name, string.Empty);
+        }
+
         public async Task<(bool Success, string ErrorMessage)> CreateGame(string gameName, int genreId,
             decimal price, string imageUrl, string videoUrl, string description)
         {

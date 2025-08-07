@@ -1,4 +1,5 @@
 ﻿using LugxGaming.BusinessLogic.Models.CreateGame;
+using LugxGaming.Data.Data.Models;
 
 namespace LugxGaming.BusinessLogic.Interfaces
 {
@@ -9,6 +10,24 @@ namespace LugxGaming.BusinessLogic.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<List<GenreFormModel>> GetAllGenres();
+
+        /// <summary>
+        /// Returns all games
+        /// </summary>
+        /// <returns></returns>
+        Task<List<GameFormModel>> GetAllGames();
+
+        /// <summary>
+        /// Returns game by given id
+        /// </summary>
+        /// <returns></returns>
+        Task<Game> GetGameById(int id);
+
+        /// <summary>
+        /// Updates game promo price by given id and discount %
+        /// </summary>
+        /// <returns></returns>
+        Task<(bool Success, string GameName, string ErrorMessage)> UpdatePromoPrice(int id, decimal discount);
 
         /// <summary>
         /// Create new game (only admin can create games)
