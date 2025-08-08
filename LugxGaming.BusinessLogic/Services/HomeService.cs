@@ -24,7 +24,8 @@ namespace LugxGaming.BusinessLogic.Services
                 Image = g.ImageUrl,
                 GameName = g.Name,
                 GenreName = g.Genre.Name,
-                Price = g.Price
+                Price = g.Price,
+                PromoPrice = g.PromoPrice
             })
             .ToList();
 
@@ -40,7 +41,8 @@ namespace LugxGaming.BusinessLogic.Services
                     Image = g.ImageUrl,
                     GameName = g.Name,
                     GenreName = g.Genre.Name,
-                    Price = g.Price
+                    Price = g.Price,
+                    PromoPrice = g.PromoPrice
                 })
                 .Take(6)
                 .ToListAsync();
@@ -57,7 +59,8 @@ namespace LugxGaming.BusinessLogic.Services
                 Image = g.ImageUrl,
                 GameName = g.Name,
                 GenreName = g.Genre.Name,
-                Price = g.Price
+                Price = g.Price,
+                PromoPrice = g.PromoPrice
             })
             .ToList();
 

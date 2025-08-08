@@ -24,6 +24,7 @@ namespace LugxGaming.BusinessLogic.Services
                     GameName = g.Name,
                     GameGenre = g.Genre.Name,
                     Price = g.Price,
+                    PromoPrice = g.PromoPrice,
                     ImageUrl = g.ImageUrl
                 })
                 .OrderBy(g => g.GameName)
@@ -41,6 +42,7 @@ namespace LugxGaming.BusinessLogic.Services
                     GameName = g.Name,
                     GameGenre = g.Genre.Name,
                     Price = g.Price,
+                    PromoPrice = g.PromoPrice,
                     ImageUrl = g.ImageUrl
                 })
                 .OrderBy(g => g.GameName)
@@ -57,6 +59,7 @@ namespace LugxGaming.BusinessLogic.Services
                     GameName = g.Name,
                     GameGenre = g.Genre.Name,
                     USDPrice = g.Price,
+                    USDPromoPrice = g.PromoPrice,
                     ImageUrl = g.ImageUrl,
                     VideoUrl = g.VideoUrl,
                     Description = g.Description
@@ -71,6 +74,7 @@ namespace LugxGaming.BusinessLogic.Services
                 GameName = g.Name,
                 GameGenre = g.Genre.Name,
                 USDPrice = g.Price,
+                USDPromoPrice= g.PromoPrice,
                 ImageUrl = g.ImageUrl,
                 VideoUrl = g.VideoUrl,
                 Description = g.Description

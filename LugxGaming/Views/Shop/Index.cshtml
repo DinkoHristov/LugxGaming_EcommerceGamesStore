@@ -5,6 +5,8 @@
     
 }
 
+<link rel="stylesheet" href="~/css/promo-price.css" asp-append-version="true">
+
 <body>
     <div class="page-heading header-text">
         <div class="container">
@@ -46,7 +48,18 @@
                         <div class="item">
                             <div class="thumb" style="width: 336px; height: 189px">
                                 <a asp-controller="Shop" asp-action="GameDetails" asp-route-gameName="@game.GameName"><img src="@game.ImageUrl" style="max-width: 100%; max-height: 100%" alt=""></a>
-                                <span class="price">$@game.Price</span>
+                                @if (game.PromoPrice != 0 && game.PromoPrice < game.Price)
+                                {
+                                    <span class="price">
+                                        <s>$@game.Price</s>
+                                        <br />
+                                        <span class="offer">$@game.PromoPrice</span>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="price">$@game.Price</span>
+                                }
                             </div>
                             <div class="down-content">
                                 <span class="category">@game.GameGenre</span>

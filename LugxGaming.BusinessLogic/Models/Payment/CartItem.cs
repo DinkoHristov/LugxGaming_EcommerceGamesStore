@@ -13,7 +13,9 @@ namespace LugxGaming.BusinessLogic.Models.Payment
         {
             this.GameId = game.Id;
             this.GameName = game.Name;
-            this.USDPrice = game.Price;
+            this.USDPrice = game.PromoPrice != 0 && game.PromoPrice < game.Price
+                ? game.PromoPrice
+                : game.Price;
             this.Quantity = quantity;
             this.Image = game.ImageUrl;
         }

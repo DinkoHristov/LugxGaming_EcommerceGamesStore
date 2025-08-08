@@ -51,8 +51,11 @@ namespace LugxGaming.Controllers
             selectedGame.RelatedGames = await this.shopService.FillRelatedGames(selectedGame.GameGenre, selectedGame.GameName);
             selectedGame.Reviews = topSixReviews;
 
+            var isPromoPriceUsed = selectedGame.USDPromoPrice != 0 && selectedGame.USDPromoPrice < selectedGame.USDPrice;
             var ethPriceInUsd = await this.currencyService.GetEthPriceInUsdAsync();
-            selectedGame.ETHPrice = selectedGame.USDPrice / ethPriceInUsd;
+            selectedGame.ETHPrice = isPromoPriceUsed 
+                ? selectedGame.USDPromoPrice / ethPriceInUsd
+                : selectedGame.USDPrice / ethPriceInUsd;
 
             ViewData["AllReviewsCount"] = allReviews.Count;
 

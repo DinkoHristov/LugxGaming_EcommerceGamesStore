@@ -19,6 +19,8 @@ namespace LugxGaming.BusinessLogic.Models.Shop
         [Required]
         public decimal USDPrice { get; set; }
 
+        public decimal USDPromoPrice { get; set; }
+
 
         [Required]
         public decimal ETHPrice { get; set; }

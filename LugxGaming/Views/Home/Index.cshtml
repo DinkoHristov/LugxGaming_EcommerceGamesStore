@@ -9,6 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/css/promo-price.css" asp-append-version="true">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -101,7 +102,18 @@
                         <div class="item">
                             <div class="thumb">
                                 <a asp-controller="Shop" asp-action="GameDetails" asp-route-gameName="@game.GameName"><img src="@game.Image" alt="" style="width: 336px; height: 189px"></a>
-                                <span class="price">@game.Price.ToString("C2")</span>
+                                @if (game.PromoPrice != 0 && game.PromoPrice < game.Price)
+                                {
+                                    <span class="price">
+                                        <s>@game.Price.ToString("C2")</s>
+                                        <br />
+                                        <span class="offer">@game.PromoPrice.ToString("C2")</span>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="price">@game.Price.ToString("C2")</span>
+                                }
                             </div>
                             <div class="down-content">
                                 <span class="category">@game.GenreName</span>
@@ -129,13 +141,20 @@
                         <a asp-controller="Shop" asp-action="Index">View All</a>
                     </div>
                 </div>
-                @foreach (var game in ViewBag.TopGames)
+                @foreach (var game in ViewBag.TopGames as List<HomeGameModel>)
                 {
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="item">
                             <div class="thumb">
                                 <a asp-controller="Shop" asp-action="GameDetails" asp-route-gameName="@game.GameName"><img src="@game.Image" alt="" style="width: 336px; height: 189px"></a>
-                                <span class="price">@game.Price.ToString("C2")</span>
+                                @if (game.PromoPrice != 0 && game.PromoPrice < game.Price)
+                                {
+                                    <span class="price">@game.PromoPrice.ToString("C2")</span>
+                                }
+                                else
+                                {
+                                    <span class="price">@game.Price.ToString("C2")</span>
+                                }
                             </div>
                             <div class="down-content">
                                 <span class="category">@game.GenreName</span>
