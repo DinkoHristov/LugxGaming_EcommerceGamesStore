@@ -6,6 +6,8 @@ namespace LugxGaming.BusinessLogic.Services
 {
     public class CurrencyService : ICurrencyInterface
     {
+        private readonly string COINGECKO_APIKEY = "CG-JsfSfQx5ECvfxvsy1sYMNL7e";
+
         private readonly IHttpClientFactory clientFactory;
         private readonly IMemoryCache memoryCache;
 
@@ -39,7 +41,7 @@ namespace LugxGaming.BusinessLogic.Services
             try
             {
                 var client = clientFactory.CreateClient();
-                var response = await client.GetStringAsync("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
+                var response = await client.GetStringAsync($"https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&x_cg_demo_api_key={COINGECKO_APIKEY}");
                 var ethPrice = JsonConvert.DeserializeObject<dynamic>(response).ethereum.usd;
                 return (decimal)ethPrice;
             }
