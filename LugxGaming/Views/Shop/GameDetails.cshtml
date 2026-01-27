@@ -191,9 +191,9 @@
 
     <!-- Write Review Modal Form -->
     <div id="reviewModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeReviewForm()" style="font-size: 50px;">&times;</span>
-            <h3 class="text-center">Write a Review</h3>
+        <div class="modal-content" style="background-image:url('@Model.ImageUrl'); background-size:cover">
+            <span class="close text-primary" onclick="closeReviewForm()" style="font-size: 50px;">&times;</span>
+            <h3 class="text-center text-primary">Write a Review</h3>
             <form asp-controller="Shop" asp-action="WriteReview" method="post">
                 <div class="container py-5 h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">

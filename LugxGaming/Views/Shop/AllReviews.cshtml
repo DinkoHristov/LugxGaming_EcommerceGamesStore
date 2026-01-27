@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/review-modal.css" asp-append-version="true" />
 
-<body>
+<body style="background-image:url('/assets/images/all-reviews.jpg'); background-size:cover">
     <div class="container review-section mt-3">
         @foreach (var review in Model)
         {
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="review-comment">@review.Comment</p>
+                <p class="review-comment text-dark">@review.Comment</p>
             </div>
             <hr>
         }

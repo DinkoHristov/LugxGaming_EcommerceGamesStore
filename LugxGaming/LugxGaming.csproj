@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\images\all-reviews.jpg" />
     <Content Remove="wwwroot\assets\images\bag.svg" />
     <Content Remove="wwwroot\assets\images\contact-us-icon.png" />
     <Content Remove="wwwroot\assets\images\create-game.jpg" />
@@ -41,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="wwwroot\assets\images\all-reviews.jpg" />
     <Resource Include="wwwroot\assets\images\bag.svg" />
     <Resource Include="wwwroot\assets\images\contact-us-icon.png" />
     <Resource Include="wwwroot\assets\images\create-game.jpg" />
