@@ -1,4 +1,5 @@
 using LugxGaming.BusinessLogic.Interfaces;
+using LugxGaming.BusinessLogic.Models.ChatBot;
 using LugxGaming.BusinessLogic.Models.Payment;
 using LugxGaming.BusinessLogic.Services;
 using LugxGaming.Data.Data;
@@ -50,6 +51,7 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
+builder.Services.Configure<OpenAISettings>(builder.Configuration.GetSection("OpenAI"));
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
